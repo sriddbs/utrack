@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'members#index'
+
+  resources :members do
+    member do
+      get :profile
+    end
+  end
+
+  get 'website/:key', to: 'members#redirect_to_website', as: :member_website
 end

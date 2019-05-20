@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 2019_05_19_181841) do
 
   create_table "members", force: :cascade do |t|
     t.string "name", null: false
-    t.string "website_short_url", null: false
     t.string "website_url", null: false
+    t.string "url_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_members_on_name"
+    t.index ["url_key"], name: "index_members_on_url_key"
   end
 
 end

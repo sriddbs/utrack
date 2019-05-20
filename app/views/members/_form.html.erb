@@ -1,0 +1,7 @@
+<%= form_for @member do |f| %>
+  <div><%= f.label :name %></div>
+  <div><%= f.text_field :name %></div>
+  <div><%= f.label :website %></div>
+  <div><%= f.text_field :website_url %></div>
+  <div><%= f.submit 'Create' %></div>
+<% end %>
