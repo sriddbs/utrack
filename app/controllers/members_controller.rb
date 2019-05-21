@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   def index
-    @members = Member.order('created_at DESC')
+    @members = Member.order('created_at DESC').paginate(page: params[:page])
   end
 
   def new
