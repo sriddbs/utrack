@@ -9,6 +9,8 @@ class Member < ApplicationRecord
   before_validation :generate_url_key, on: :create
   before_save :sanitize_url
 
+  private
+
   def generate_url_key
     unique_id = ([*('a'..'z'), *('A'..'Z'), *('0'..'9')]).sample(UNIQUE_ID_LENGTH).join
 
