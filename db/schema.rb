@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_181841) do
+ActiveRecord::Schema.define(version: 2019_05_22_090407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_181841) do
     t.string "url_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "website_contents", default: {}
     t.index ["name"], name: "index_members_on_name"
     t.index ["url_key"], name: "index_members_on_url_key"
   end
