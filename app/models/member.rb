@@ -1,6 +1,7 @@
 class Member < ApplicationRecord
   UNIQUE_ID_LENGTH = 6.freeze
   BASE_SHORT_URL = 'http://tiny.ut'.freeze
+  WEBSITE_HTML_ELEMENTS = 'h1, h2, h3'.freeze
 
   validates :name, presence: true
   validates :url_key, presence: true

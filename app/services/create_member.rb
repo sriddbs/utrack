@@ -13,6 +13,7 @@ class CreateMember < Base
     member = Member.new(@params)
 
     if member.save
+      ParseWebsiteContent.new(member).call
       success('Member created successfully', member)
     else
       failure(member.errors.full_messages.join(', '), member)
