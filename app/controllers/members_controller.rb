@@ -8,11 +8,15 @@ class MembersController < ApplicationController
   end
 
   def create
-    @member = Member.new(member_params)
+    result = CreateMember.new(member_params).call
 
-    if @member.save
+    @member = result.object
+
+    if result.success
+      flash[:success] = result.message
       redirect_to members_path
     else
+      flash[:error] = result.message
       render :new
     end
   end
