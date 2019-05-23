@@ -16,7 +16,7 @@ class ParseWebsiteContent
 
     doc = Nokogiri::HTML(open(@member.website_url))
 
-      doc.css(Member::WEBSITE_HTML_ELEMENTS).each do |link|
+    doc.css(Member::WEBSITE_HTML_ELEMENTS).each do |link|
       contents[:headings] << link.content.strip
     end
 
