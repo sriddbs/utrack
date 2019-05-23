@@ -10,6 +10,8 @@ class Member < ApplicationRecord
   before_validation :generate_url_key, on: :create
   before_save :sanitize_url
 
+  scope :filter_by_heading, ->(keyword) { where("website_contents->>'headings' ILIKE ?", "%#{keyword}%") }
+
   private
 
   def generate_url_key
