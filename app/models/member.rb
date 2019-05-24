@@ -10,6 +10,11 @@ class Member < ApplicationRecord
   before_validation :generate_url_key, on: :create
   before_save :sanitize_url
 
+  has_many :friendships
+  has_many :friends, through: :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", foreign_key: :friend_id
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :member
+
   scope :filter_by_heading, ->(keyword) { where("website_contents->>'headings' ILIKE ?", "%#{keyword}%") }
 
   private

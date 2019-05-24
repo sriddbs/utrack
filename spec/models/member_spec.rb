@@ -6,6 +6,11 @@ RSpec.describe Member, type: :model do
     it { should validate_presence_of(:website_url) }
   end
 
+  describe 'associations' do
+    it { should have_many(:friends) }
+    it { should have_many(:inverse_friends) }
+  end
+
   describe '#generate_url_key' do
     it 'generates unique_id of specified length' do
       member = FactoryBot.create(:member)
