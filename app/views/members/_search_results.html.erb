@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Website</th>
+    <th>Headings</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @members.group_by { |m| m }.each do |member, member_data| %>
+      <tr>
+        <td><%= member.name %></td>
+        <td><%= member.website_url %></td>
+        <td><%= member_data.map(&:value) %>
+        <td><%= link_to 'View Profile', profile_member_path(member) %></td>
+      </tr>
+    <% end %>
+    <%= will_paginate @members %>
+  </tbody>
+</table>

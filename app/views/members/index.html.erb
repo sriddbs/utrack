@@ -8,20 +8,9 @@
 <% end %>
 
 <p><%= link_to 'Add new Member', new_member_path %></p>
-<table>
-  <thead>
-    <th>Name</th>
-    <th>Website</th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @members.each do |member| %>
-      <tr>
-        <td><%= member.name %></td>
-        <td><%= link_to website_short_url(member.url_key), member_website_path(member.url_key), target: '_blank' %></td>
-        <td><%= link_to 'View Profile', profile_member_path(member) %></td>
-      </tr>
-    <% end %>
-    <%= will_paginate @members %>
-  </tbody>
-</table>
+
+<% if params[:search].present? %>
+  <%= render partial: 'search_results', members: @members %>
+<% else %>
+  <%= render partial: 'all_members', members: @members %>
+<% end %>

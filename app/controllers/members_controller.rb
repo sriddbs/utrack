@@ -3,8 +3,8 @@ class MembersController < ApplicationController
     @members = if params[:search].present?
       Member.filter_by_heading(params[:search])
     else
-      Member.all
-    end.order('created_at DESC').paginate(page: params[:page])
+      Member.order('created_at DESC')
+    end.paginate(page: params[:page])
   end
 
   def new
