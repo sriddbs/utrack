@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_172124) do
+ActiveRecord::Schema.define(version: 2019_05_25_165534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_05_24_172124) do
     t.integer "friendships_count", default: 0
     t.index ["name"], name: "index_members_on_name"
     t.index ["url_key"], name: "index_members_on_url_key"
+    t.index ["website_contents"], name: "index_members_on_website_contents", using: :gin
   end
 
   add_foreign_key "friends", "members"
