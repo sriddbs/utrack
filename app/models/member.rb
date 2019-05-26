@@ -6,9 +6,9 @@ class Member < ApplicationRecord
   validates :name, presence: true
   validates :url_key, presence: true
   validates :website_url, presence: true
+  validates_format_of :website_url, with: URI::regexp(%w(http https))
 
   before_validation :generate_url_key, on: :create
-  before_save :sanitize_url
 
   has_many :friendships
   has_many :friends, through: :friendships
@@ -36,11 +36,5 @@ class Member < ApplicationRecord
     end
 
     self.url_key = unique_id
-  end
-
-  def sanitize_url
-    self.website_url.strip!
-    sanitized_url = self.website_url.downcase.gsub(/(https?:\/\/)|(www\.)/, '')
-    self.website_url = "http://#{sanitized_url}"
   end
 end
