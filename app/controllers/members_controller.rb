@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   def index
     @members = if params[:search].present?
-      Member.filter_by_heading(params[:search])
+      Member.search(params[:search])
     else
       Member.order('created_at DESC')
     end.paginate(page: params[:page])

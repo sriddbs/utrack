@@ -20,6 +20,12 @@ class Member < ApplicationRecord
       where data ILIKE '%#{keyword}%' ORDER BY created_at DESC")
   }
 
+  class << self
+    def search(keyword)
+      filter_by_heading(keyword)
+    end
+  end
+
   private
 
   def generate_url_key
