@@ -22,7 +22,7 @@ RSpec.describe CreateMember do
       result = subject.call
       member = result.object
 
-      expect(result.message).to eql("Website url can't be blank")
+      expect(result.message).to eql("Website url can't be blank, Website url is invalid")
       expect(result.success).to be_falsy
       expect(member).not_to be_persisted
     end
