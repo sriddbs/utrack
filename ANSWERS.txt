@@ -1,0 +1,59 @@
+1. Before understanding about GIL(Global Interpreter Lock), we need to understand some jargons which are Concurrency, Parallelism,
+Threads.
+
+Let's get the dictionary meaning of Concurrent and Parallel.
+
+* Concurrent: existing, happening, or done at the same time
+* Parallel: very similar and often happening at the same time
+
+Yet the way they are used in computer science and programming are quite different
+
+Concurrency: Interruptability
+Parallelism: Independentability
+
+Let me explain what it means by a real world example:
+
+Let's say you want to get a brick wall built, and you have assigned a worker to get it done.
+
+Things we need for this: bricks and mortar mix
+Let's say the workers are building two walls on each side and there is one worker who is mixing the mortar
+
+Concurrent Process:
+
+Two workers start lining up the bricks on either side, let's assume that one of the worker has consumed all of the mortar mix
+and now the other worker has to wait for the next volume of mortar, in this case we can say the worker is interrupted.
+
+There are things happening concurrently, but with interruption
+
+Parallel process:
+
+Let's add one more worker who can do the mortar mix while the other is setting up the bricks to build the wall. In this case,
+each of the workers get a separate person to make the mortar mix so that there is no waiting. In this case the walls on either
+side is getting built simultaneously.
+
+You can think of theses workers as "threads".
+
+Now that we have some understanding about concurrency, we can talk about GIL.
+
+Let's assume that the government imposes a rule where during the construction, only one worker can work any point of time.
+In that case, no matter how many workers you have, at a time only one worker can perform the job. The rule can be considered
+as a lock.
+
+That's what happens with GIL, no matter how many threads we create, there can be only one thread executing at any given point
+of time
+
+If you still want to scale up you application despite GIL, you can go with processes instead of threads, but process consumes
+more memory and thus you need to have a system which can support multiple processes.
+
+
+2. Let's take an example of Brick manufacturing machine. This involves some steps like preparation, moulding, and finally drying etc.
+
+So this machine takes all the raw materials as input and goes through each phase and ultimately produces the result which is the brick.
+
+With this there is no user interaction involved in each phase or only may be in the first phase were in you need to supply the raw
+materials. And later stages will be performed by the machine and gives us the end-product.
+
+Similarly in the programming world, we have process that runs continuously just like the Brick manufacturing machine which takes the
+input and gives the result.
+
+You keep adding the jobs(say for ex: API calls) to this process and it will execute one by one and gives us the end result.
