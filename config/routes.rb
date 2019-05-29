@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   get 'website/:key', to: 'members#redirect_to_website', as: :member_website
+  get 'search', to: 'members#search', as: :search
 end

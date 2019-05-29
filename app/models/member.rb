@@ -15,14 +15,19 @@ class Member < ApplicationRecord
   has_many :inverse_friendships, :class_name => "Friendship", foreign_key: :friend_id
   has_many :inverse_friends, :through => :inverse_friendships, :source => :member
 
-  scope :filter_by_heading, ->(keyword) {
-    Member.find_by_sql("select * from members, jsonb_array_elements_text(website_contents->'headings') as data
-      where data ILIKE '%#{keyword}%' ORDER BY created_at DESC")
+  scope :filter_by_heading, ->(keyword, member_id=nil) {
+    if member_id
+      Member.find_by_sql("select * from members, jsonb_array_elements_text(website_contents->'headings') as data
+        where data ILIKE '%#{keyword}%' AND id != #{member_id} ORDER BY created_at DESC")
+    else
+      Member.find_by_sql("select * from members, jsonb_array_elements_text(website_contents->'headings') as data
+        where data ILIKE '%#{keyword}%' ORDER BY created_at DESC")
+    end
   }
 
   class << self
-    def search(keyword)
-      filter_by_heading(keyword)
+    def search(keyword, member_id=nil)
+      filter_by_heading(keyword, member_id)
     end
   end
 

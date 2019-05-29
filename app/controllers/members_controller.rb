@@ -42,6 +42,10 @@ class MembersController < ApplicationController
     redirect_to @member.website_url, status: 301
   end
 
+  def search
+    @members = Member.search(params[:search], params[:member_id]).paginate(page: params[:page])
+  end
+
   private
 
   def member_params

@@ -1,3 +1,13 @@
+<%= form_tag(search_path, :method => 'get') do %>
+  <div class="input-group">
+    <%= search_field_tag :search, params[:search], placeholder: 'Search' %>
+    <%= hidden_field_tag :member_id, @member.id %>
+    <div>
+      <%= button_tag 'Search' %>
+    </div>
+  </div>
+<% end %>
+
 <p><%= @member.name %></p>
 <p><%= @member.website_url %></p>
 <p><%= @member.friendships_count %></p>
